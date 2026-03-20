@@ -1,7 +1,6 @@
 services:
 - type: web
   name: port
-  runtime: static
-buildCommand: npm run build
-    publishPath: dist
-        
+    runtime: static
+      buildCommand: npm run build
+        publishPath: dist
