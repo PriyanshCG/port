@@ -1,0 +1,6 @@
+<svg width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+ <rect width="100%" height="100%" fill="#1a1a1a"/>
+ <circle cx="200" cy="150" r="80" fill="#00AEEF"/>
+ <path d="M200 250c-60 0-110 40-120 100h240c-10-60-60-100-120-100z" fill="#00AEEF"/>
+ <text x="50%" y="380" font-family="Arial" font-size="24" fill="white" text-anchor="middle">Priyansh Patel</text>
+</svg>

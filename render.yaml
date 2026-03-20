@@ -1,0 +1,6 @@
+services:
+  - type: static
+    name: port
+    env: static
+    buildCommand: npm run build
+    publishPath: dist
