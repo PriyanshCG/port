@@ -1,102 +1,146 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { FaTerminal } from 'react-icons/fa';
 
 const navItems = [
-    { name: 'Home', href: '#home', color: 'bg-white/20' },
-    { name: 'Skills', href: '#skills', color: 'bg-white/20' },
-    { name: 'Projects', href: '#projects', color: 'bg-white/20' },
-    { name: 'Certificates', href: '#certificates', color: 'bg-white/20' },
-    { name: 'Contact', href: '#contact', color: 'bg-white/20' },
+    { name: 'Home', href: '#home' },
+    { name: 'About', href: '#about' },
+    { name: 'Terminal', href: '#terminal' },
+    { name: 'Skills', href: '#skills' },
+    { name: 'Projects', href: '#projects' },
+    { name: 'Certificates', href: '#certificates' },
+    { name: 'Education', href: '#education' },
+    { name: 'Contact', href: '#contact' },
 ];
 
-const Navbar = ({ introFinished }) => {
+const Navbar = () => {
     const [activeSection, setActiveSection] = useState('home');
-    const [hoveredTab, setHoveredTab] = useState(null);
+    const [scrolled, setScrolled] = useState(false);
+    const [mobileOpen, setMobileOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
-            const sections = navItems.map(item => item.href.substring(1));
-            const scrollPosition = window.scrollY + 300;
-
-            for (const section of sections) {
-                const element = document.getElementById(section);
-                if (element && element.offsetTop <= scrollPosition && (element.offsetTop + element.offsetHeight) > scrollPosition) {
-                    setActiveSection(section);
-                }
+            setScrolled(window.scrollY > 60);
+            const sections = navItems.map(i => i.href.substring(1));
+            const pos = window.scrollY + 200;
+            for (const sec of [...sections].reverse()) {
+                const el = document.getElementById(sec);
+                if (el && el.offsetTop <= pos) { setActiveSection(sec); break; }
             }
         };
-
-        window.addEventListener('scroll', handleScroll);
+        window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll();
         return () => window.removeEventListener('scroll', handleScroll);
     }, []);
 
-    const scrollToSection = (e, href) => {
+    const scrollTo = (e, href) => {
         e.preventDefault();
-        const element = document.querySelector(href);
-        if (element) {
-            window.scrollTo({
-                top: element.offsetTop,
-                behavior: 'smooth'
-            });
-        }
+        setMobileOpen(false);
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
     };
 
     return (
-        <motion.nav
-            initial={{ opacity: 0, y: 50 }}
-            animate={introFinished ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="fixed bottom-6 left-0 right-0 z-50 flex justify-center px-4"
+        <motion.header
+            initial={{ y: -80, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'navbar-glass' : 'bg-transparent'
+                }`}
         >
-            <div className="bg-[#0c0c0c]/80 backdrop-blur-2xl border border-[#a3ff00]/20 px-4 py-3 shadow-[0_0_20px_rgba(163,255,0,0.1)] flex items-center">
-                <ul className="flex items-center gap-1 md:gap-2">
-                    {navItems.map((item) => {
-                        const isActive = activeSection === item.href.substring(1);
-                        const isHovered = hoveredTab === item.name;
+            <nav className="container mx-auto max-w-7xl px-6 py-4 flex items-center justify-between">
+                {/* Logo */}
+                <motion.a
+                    href="#home"
+                    onClick={e => scrollTo(e, '#home')}
+                    className="flex items-center gap-2 group"
+                    whileHover={{ scale: 1.02 }}
+                >
+                    <div className="w-8 h-8 border border-[#00d4ff]/50 flex items-center justify-center group-hover:border-[#00d4ff] transition-colors">
+                        <FaTerminal className="text-[#00d4ff] text-xs" />
+                    </div>
+                    <span className="font-mono text-sm font-bold text-white">
+                        priyansh<span className="text-[#00d4ff]">@</span>dev<span className="text-[#a855f7]">:~$</span>
+                    </span>
+                </motion.a>
 
+                {/* Desktop nav */}
+                <ul className="hidden md:flex items-center gap-1">
+                    {navItems.map(item => {
+                        const isActive = activeSection === item.href.substring(1);
                         return (
-                            <li
-                                key={item.name}
-                                onMouseEnter={() => setHoveredTab(item.name)}
-                                onMouseLeave={() => setHoveredTab(null)}
-                                className="relative"
-                            >
+                            <li key={item.name}>
                                 <a
                                     href={item.href}
-                                    onClick={(e) => scrollToSection(e, item.href)}
-                                    className={`relative z-10 px-4 py-2 rounded-md font-mono text-sm font-medium transition-all duration-300 block ${isActive ? 'text-[#a3ff00] drop-shadow-[0_0_8px_rgba(163,255,0,0.8)]' : 'text-gray-400 hover:text-[#a3ff00]'
+                                    onClick={e => scrollTo(e, item.href)}
+                                    className={`relative px-4 py-2 text-sm font-mono transition-all duration-300 block rounded ${isActive
+                                        ? 'text-[#00d4ff]'
+                                        : 'text-slate-400 hover:text-[#00d4ff]'
                                         }`}
                                 >
-                                    {item.name}
-
-                                    {/* Active State Indicator - Underline Dot */}
                                     {isActive && (
-                                        <motion.div
-                                            layoutId="active-dot"
-                                            className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#a3ff00] shadow-[0_0_10px_#a3ff00]"
-                                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                                        <motion.span
+                                            layoutId="nav-active"
+                                            className="absolute inset-0 bg-[#00d4ff]/8 rounded border border-[#00d4ff]/20"
+                                            transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                                         />
                                     )}
-
-                                    {/* Hover State Background */}
-                                    {!isActive && isHovered && (
-                                        <motion.div
-                                            layoutId="hover-pill"
-                                            className="absolute inset-0 rounded-full -z-10 bg-white/10"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.2 }}
-                                        />
+                                    <span className="relative z-10">{item.name}</span>
+                                    {isActive && (
+                                        <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#00d4ff] rounded-full shadow-[0_0_6px_#00d4ff]" />
                                     )}
                                 </a>
                             </li>
                         );
                     })}
                 </ul>
-            </div>
-        </motion.nav>
+
+                {/* Mobile hamburger */}
+                <button
+                    className="md:hidden flex flex-col gap-1.5 p-2"
+                    onClick={() => setMobileOpen(o => !o)}
+                    aria-label="Toggle menu"
+                >
+                    {[0, 1, 2].map(i => (
+                        <motion.span
+                            key={i}
+                            className="block h-[1.5px] bg-[#00d4ff] rounded"
+                            style={{ width: i === 1 ? 20 : 26 }}
+                            animate={mobileOpen
+                                ? i === 0 ? { rotate: 45, y: 5 } : i === 2 ? { rotate: -45, y: -5 } : { opacity: 0 }
+                                : { rotate: 0, y: 0, opacity: 1 }
+                            }
+                            transition={{ duration: 0.2 }}
+                        />
+                    ))}
+                </button>
+            </nav>
+
+            {/* Mobile menu */}
+            <AnimatePresence>
+                {mobileOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="md:hidden navbar-glass border-t border-[#00d4ff]/10 px-6 pb-4"
+                    >
+                        {navItems.map(item => (
+                            <a
+                                key={item.name}
+                                href={item.href}
+                                onClick={e => scrollTo(e, item.href)}
+                                className={`block py-3 text-sm font-mono border-b border-white/5 transition-colors ${activeSection === item.href.substring(1)
+                                    ? 'text-[#00d4ff]' : 'text-slate-400'
+                                    }`}
+                            >
+                                <span className="text-[#00d4ff]/50">~/</span> {item.name}
+                            </a>
+                        ))}
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </motion.header>
     );
 };
 
