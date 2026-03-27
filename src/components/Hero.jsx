@@ -201,7 +201,7 @@ const Hero = () => {
                         <div className="absolute inset-0 rounded-2xl opacity-50"
                             style={{
                                 background: 'linear-gradient(135deg, rgba(255, 215, 0,0.4), rgba(255, 250, 205,0.4))',
-                                padding: '1.5px',
+                                padding: '1.5px', 
                             }}
                         >
                             <div className="w-full h-full rounded-2xl bg-[#000000]" />
