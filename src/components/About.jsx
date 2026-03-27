@@ -33,7 +33,7 @@ const About = () => {
     return (
         <section className="relative py-32 px-6 overflow-hidden">
             {/* Side decoration */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-px h-48 bg-gradient-to-b from-transparent via-[#00d4ff]/30 to-transparent" />
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-px h-48 bg-gradient-to-b from-transparent via-[#FFD700]/30 to-transparent" />
 
             <div className="container mx-auto max-w-6xl relative z-10">
                 {/* Section label */}
@@ -62,17 +62,17 @@ const About = () => {
 
                         <div className="space-y-5 text-slate-400 leading-relaxed">
                             <p>
-                                Passionate <span className="text-[#00d4ff] font-medium">B.Tech CSE student</span> who blends logic with
+                                Passionate <span className="text-[#FFD700] font-medium">B.Tech CSE student</span> who blends logic with
                                 creativity to build modern web applications. I enjoy solving real-world problems and
                                 constantly exploring new technologies to stay ahead.
                             </p>
                             <p>
                                 When I'm not coding, you'll find me on the cricket pitch — the same
-                                <span className="text-[#a855f7] font-medium"> strategic thinking</span> that makes
+                                <span className="text-[#FFFACD] font-medium"> strategic thinking</span> that makes
                                 a good batsman also makes a great engineer. I believe in playing both long innings.
                             </p>
                             <p>
-                                Currently studying at <span className="text-[#00d4ff]">Coding Gita × Swaminarayan University, Kalol</span>,
+                                Currently studying at <span className="text-[#FFD700]">Coding Gita × Swaminarayan University, Kalol</span>,
                                 building full-stack projects and contributing to the open-source ecosystem.
                             </p>
                         </div>
@@ -80,10 +80,10 @@ const About = () => {
                         <motion.a
                             href="#terminal"
                             onClick={e => { e.preventDefault(); document.getElementById('terminal')?.scrollIntoView({ behavior: 'smooth' }); }}
-                            className="inline-flex items-center gap-2 mt-8 text-sm font-mono text-[#00d4ff] hover:text-white transition-colors border-b border-[#00d4ff]/30 hover:border-white pb-1"
+                            className="inline-flex items-center gap-2 mt-8 mb-8 text-sm font-mono text-[#FFD700] hover:text-white transition-colors border-b border-[#FFD700]/30 hover:border-white pb-1"
                             whileHover={{ x: 4 }}
                         >
-                            <span className="text-[#a855f7]">{'>'}</span> Try the interactive terminal
+                            <span className="text-[#FFFACD]">{'>'}</span> Try the interactive terminal
                         </motion.a>
                     </motion.div>
 
@@ -120,9 +120,9 @@ const About = () => {
                                     ['status', '"Available for work"'],
                                 ].map(([key, val]) => (
                                     <div key={key}>
-                                        <span className="text-[#a855f7]">{key}</span>
+                                        <span className="text-[#FFFACD]">{key}</span>
                                         <span className="text-slate-500">{': '}</span>
-                                        <span className="text-[#00d4ff]">{val}</span>
+                                        <span className="text-[#FFD700]">{val}</span>
                                     </div>
                                 ))}
                             </div>

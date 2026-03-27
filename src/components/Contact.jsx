@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaEnvelope, FaPaperPlane } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane, FaYoutube } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
+import { SiLeetcode, SiSololearn } from 'react-icons/si';
 import { useState } from 'react';
 
 const Contact = () => {
@@ -24,7 +26,7 @@ const Contact = () => {
         <section className="relative py-32 px-6 overflow-hidden">
             {/* Decorative glow */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] blur-[120px] rounded-full pointer-events-none opacity-20"
-                style={{ background: 'radial-gradient(ellipse, #00d4ff, #a855f7)' }} />
+                style={{ background: 'radial-gradient(ellipse, #FFD700, #FFFACD)' }} />
 
             <div className="container mx-auto max-w-6xl relative z-10">
                 <motion.div
@@ -62,16 +64,16 @@ const Contact = () => {
                     >
                         {/* Email card */}
                         <div className="glass-card p-6 flex items-center gap-4 group">
-                            <div className="w-12 h-12 rounded-xl bg-[#00d4ff]/10 border border-[#00d4ff]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#00d4ff]/20 transition-colors">
-                                <FaEnvelope className="text-[#00d4ff]" />
+                            <div className="w-12 h-12 rounded-xl bg-[#FFD700]/10 border border-[#FFD700]/20 flex items-center justify-center flex-shrink-0 group-hover:bg-[#FFD700]/20 transition-colors">
+                                <FaEnvelope className="text-[#FFD700]" />
                             </div>
                             <div>
                                 <div className="text-xs font-mono text-slate-500 mb-0.5">Email</div>
                                 <a
-                                    href="mailto:priyansh.patel.a.cg@gmail.com"
-                                    className="text-sm text-slate-300 hover:text-[#00d4ff] transition-colors font-mono"
+                                    href="mailto:priyansh30407@gmail.com"
+                                    className="text-sm text-slate-300 hover:text-[#FFD700] transition-colors font-mono"
                                 >
-                                    priyansh.patel.a.cg@gmail.com
+                                    priyansh30407@gmail.com
                                 </a>
                             </div>
                         </div>
@@ -83,7 +85,10 @@ const Contact = () => {
                                 {[
                                     { icon: <FaGithub />, label: 'GitHub', handle: 'PriyanshCG', href: 'https://github.com/PriyanshCG', color: '#ffffff' },
                                     { icon: <FaLinkedin />, label: 'LinkedIn', handle: 'priyansh-patel-75264839a', href: 'https://www.linkedin.com/in/priyansh-patel-75264839a/', color: '#0077b5' },
-                                    { icon: <FaTwitter />, label: 'Twitter', handle: 'Priyanshhh_300', href: 'https://x.com/Priyanshhh_300', color: '#1da1f2' },
+                                    { icon: <FaXTwitter />, label: 'X', handle: 'Priyanshhh_300', href: 'https://x.com/Priyanshhh_300', color: '#ffffff' },
+                                    { icon: <FaYoutube />, label: 'YouTube', handle: 'PriyanshPatel-d7i', href: 'https://www.youtube.com/@PriyanshPatel-d7i', color: '#ff0000' },
+                                    { icon: <SiSololearn />, label: 'Sololearn', handle: '35528286', href: 'https://www.sololearn.com/en/profile/35528286', color: '#27B885' },
+                                    { icon: <SiLeetcode />, label: 'LeetCode', handle: 'priyanshhh30', href: 'https://leetcode.com/u/priyanshhh30/', color: '#FFA116' },
                                 ].map(s => (
                                     <motion.a
                                         key={s.label}
@@ -99,7 +104,7 @@ const Contact = () => {
                                             <div className="text-xs text-slate-500">{s.label}</div>
                                             <div className="text-sm font-mono text-slate-300 group-hover:text-white transition-colors">@{s.handle}</div>
                                         </div>
-                                        <span className="ml-auto text-xs text-slate-600 group-hover:text-[#00d4ff] transition-colors">→</span>
+                                        <span className="ml-auto text-xs text-slate-600 group-hover:text-[#FFD700] transition-colors">→</span>
                                     </motion.a>
                                 ))}
                             </div>
@@ -125,7 +130,7 @@ const Contact = () => {
                                 <div className="grid sm:grid-cols-2 gap-4">
                                     <div>
                                         <label className="text-xs font-mono text-slate-500 mb-1.5 block">
-                                            <span className="text-[#00d4ff]">const</span> name
+                                            <span className="text-[#FFD700]">const</span> name
                                         </label>
                                         <input
                                             name="name"
@@ -139,7 +144,7 @@ const Contact = () => {
                                     </div>
                                     <div>
                                         <label className="text-xs font-mono text-slate-500 mb-1.5 block">
-                                            <span className="text-[#00d4ff]">const</span> email
+                                            <span className="text-[#FFD700]">const</span> email
                                         </label>
                                         <input
                                             name="email"
@@ -155,7 +160,7 @@ const Contact = () => {
 
                                 <div>
                                     <label className="text-xs font-mono text-slate-500 mb-1.5 block">
-                                        <span className="text-[#a855f7]">let</span> subject
+                                        <span className="text-[#FFFACD]">let</span> subject
                                     </label>
                                     <input
                                         name="subject"
@@ -170,7 +175,7 @@ const Contact = () => {
 
                                 <div>
                                     <label className="text-xs font-mono text-slate-500 mb-1.5 block">
-                                        <span className="text-[#a855f7]">let</span> message
+                                        <span className="text-[#FFFACD]">let</span> message
                                     </label>
                                     <textarea
                                         name="message"
@@ -189,7 +194,7 @@ const Contact = () => {
                                     whileHover={!sent && !sending ? { scale: 1.02 } : {}}
                                     whileTap={!sent && !sending ? { scale: 0.98 } : {}}
                                     className={`w-full py-4 rounded font-mono font-semibold text-sm tracking-wider uppercase flex items-center justify-center gap-3 transition-all duration-300 ${sent
-                                        ? 'bg-[#39ff14]/20 border border-[#39ff14]/40 text-[#39ff14]'
+                                        ? 'bg-[#FFD700]/20 border border-[#FFD700]/40 text-[#FFD700]'
                                         : 'btn-neon-blue'
                                         }`}
                                 >
@@ -198,7 +203,7 @@ const Contact = () => {
                                             <motion.span
                                                 animate={{ rotate: 360 }}
                                                 transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                                                className="inline-block w-4 h-4 border-2 border-[#00d4ff] border-t-transparent rounded-full"
+                                                className="inline-block w-4 h-4 border-2 border-[#FFD700] border-t-transparent rounded-full"
                                             />
                                             Sending...
                                         </>
@@ -221,12 +226,12 @@ const Contact = () => {
             {/* Footer */}
             <div className="container mx-auto max-w-6xl mt-24 pt-8 border-t border-white/5 text-center">
                 <p className="text-slate-600 text-sm font-mono">
-                    <span className="text-[#00d4ff]">©</span> {new Date().getFullYear()}{' '}
+                    <span className="text-[#FFD700]">©</span> {new Date().getFullYear()}{' '}
                     <span className="text-slate-400">Priyansh Patel</span>
                     {' '}· Built with{' '}
-                    <span className="text-[#a855f7]">React</span> +{' '}
-                    <span className="text-[#00d4ff]">Tailwind CSS</span> +{' '}
-                    <span className="text-[#39ff14]">💚</span>
+                    <span className="text-[#FFFACD]">React</span> +{' '}
+                    <span className="text-[#FFD700]">Tailwind CSS</span> +{' '}
+                    <span className="text-[#FFD700]">💚</span>
                 </p>
             </div>
         </section>

@@ -36,7 +36,7 @@ const LoadingScreen = () => {
                 className="text-center mb-8"
             >
                 <div className="text-4xl font-bold font-mono gradient-text mb-2">
-                    PP<span className="text-[#00d4ff]">_</span>
+                    PP<span className="text-[#FFD700]">_</span>
                 </div>
                 <div className="text-xs font-mono text-[#475569] tracking-[4px] uppercase">
                     portfolio.exe
@@ -54,7 +54,7 @@ const LoadingScreen = () => {
                         initial={{ opacity: 0, x: -10 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 0.2 }}
-                        className={i === lineIndex ? 'text-[#00d4ff]' : 'text-[#475569]'}
+                        className={i === lineIndex ? 'text-[#FFD700]' : 'text-[#475569]'}
                     >
                         {line}
                     </motion.div>
@@ -66,15 +66,15 @@ const LoadingScreen = () => {
                 <motion.div
                     className="h-full rounded-full"
                     style={{
-                        background: 'linear-gradient(90deg, #00d4ff, #a855f7)',
-                        boxShadow: '0 0 10px #00d4ff',
+                        background: 'linear-gradient(90deg, #FFD700, #FFFACD)',
+                        boxShadow: '0 0 10px #FFD700',
                     }}
                     animate={{ width: `${progress}%` }}
                     transition={{ duration: 0.3, ease: 'easeOut' }}
                 />
             </div>
 
-            <div className="text-xs font-mono text-[#00d4ff] mt-3">
+            <div className="text-xs font-mono text-[#FFD700] mt-3">
                 {Math.round(progress)}%
             </div>
         </motion.div>

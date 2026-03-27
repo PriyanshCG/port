@@ -7,7 +7,7 @@ export default {
   theme: {
     extend: {
       colors: {
-        'neon-blue': '#00AEEF',
+        'neon-blue': '#FFD700',
         'pure-black': '#000000',
       },
       fontFamily: {

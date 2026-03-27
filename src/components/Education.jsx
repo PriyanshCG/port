@@ -9,7 +9,7 @@ const timeline = [
         school: 'Apollo International School, Gota',
         desc: 'Completed secondary education with strong foundation in Mathematics and Science.',
         icon: <FaSchool />,
-        color: '#00d4ff',
+        color: '#FFD700',
     },
     {
         year: '2025',
@@ -17,7 +17,7 @@ const timeline = [
         school: 'St. Xaviers High School Loyola',
         desc: 'Completed higher secondary with focus on Computer Science and core sciences.',
         icon: <FaSchool />,
-        color: '#a855f7',
+        color: '#FFFACD',
     },
     {
         year: '2025 – 2029',
@@ -25,7 +25,7 @@ const timeline = [
         school: 'Coding Gita × Swaminarayan University, Kalol',
         desc: 'Pursuing B.Tech CSE with focus on full-stack development, algorithms, and modern software engineering practices.',
         icon: <FaGraduationCap />,
-        color: '#39ff14',
+        color: '#FFD700',
         current: true,
     },
 ];
@@ -37,12 +37,11 @@ const TimelineItem = ({ item, index }) => {
 
     return (
         <div ref={ref} className={`relative flex items-center ${isLeft ? 'flex-row' : 'flex-row-reverse'} gap-0 mb-12`}>
-            {/* Card */}
             <motion.div
                 initial={{ opacity: 0, x: isLeft ? -60 : 60 }}
                 animate={inView ? { opacity: 1, x: 0 } : {}}
                 transition={{ duration: 0.7, delay: index * 0.15, ease: [0.16, 1, 0.3, 1] }}
-                className={`w-full md:w-[calc(50%-40px)] glass-card p-6 ${item.current ? 'border-[--card-color]/30' : ''}`}
+                className={`w-full md:w-[calc(50%-40px)] glass-card p-6 border transition-all duration-300 group hover:-translate-y-2 hover:shadow-[0_15px_30px_rgba(255,215,0,0.15)] hover:bg-white/[0.05] ${item.current ? 'border-[--card-color]/50' : 'border-white/5 hover:border-[--card-color]/30'}`}
                 style={{ '--card-color': item.color }}
             >
                 {item.current && (
@@ -65,7 +64,7 @@ const TimelineItem = ({ item, index }) => {
                     </div>
                 </div>
 
-                <div className="text-[#00d4ff]/70 text-sm font-medium mb-2">{item.school}</div>
+                <div className="text-[#FFD700]/70 text-sm font-medium mb-2">{item.school}</div>
                 <p className="text-slate-500 text-sm leading-relaxed">{item.desc}</p>
             </motion.div>
 

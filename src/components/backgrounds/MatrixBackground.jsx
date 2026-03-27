@@ -37,8 +37,8 @@ const MatrixBackground = () => {
             for (let i = 0; i < drops.length; i++) {
                 const text = letters.charAt(Math.floor(Math.random() * letters.length));
                 // Use blue tint instead of pure green for theme consistency or mix
-                // ctx.fillStyle = Math.random() > 0.5 ? "#00AEEF" : "#0F0"; 
-                ctx.fillStyle = "#00AEEF"; // Keeping it theme consistent (Neon Blue)
+                // ctx.fillStyle = Math.random() > 0.5 ? "#FFD700" : "#0F0"; 
+                ctx.fillStyle = "#FFD700"; // Keeping it theme consistent (Neon Blue)
 
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
 

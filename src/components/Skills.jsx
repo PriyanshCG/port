@@ -1,184 +1,134 @@
 import { motion } from 'framer-motion';
-import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs, FaGitAlt, FaFigma } from 'react-icons/fa';
-import { SiTailwindcss, SiMongodb, SiExpress, SiPostman, SiVercel, SiNetlify, SiRedis } from 'react-icons/si';
+import { FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs } from 'react-icons/fa';
+import { SiTailwindcss, SiMongodb, SiNextdotjs, SiRedis } from 'react-icons/si';
 
-const skillGroups = [
-    {
-        category: 'Frontend',
-        color: '#00d4ff',
-        skills: [
-            { name: 'HTML5', icon: <FaHtml5 /> },
-            { name: 'CSS3', icon: <FaCss3Alt /> },
-            { name: 'JavaScript', icon: <FaJs /> },
-            { name: 'React.js', icon: <FaReact /> },
-            { name: 'Tailwind CSS', icon: <SiTailwindcss /> },
-        ],
-        iconColors: ['text-orange-500', 'text-blue-400', 'text-yellow-400', 'text-cyan-400', 'text-cyan-300'],
-    },
-    {
-        category: 'Backend',
-        color: '#a855f7',
-        skills: [
-            { name: 'Node.js', icon: <FaNodeJs /> },
-            { name: 'Express.js', icon: <SiExpress /> },
-            { name: 'MongoDB', icon: <SiMongodb /> },
-            { name: 'Redis', icon: <SiRedis /> },
-        ],
-        iconColors: ['text-green-500', 'text-slate-300', 'text-green-400', 'text-red-400'],
-    },
-    {
-        category: 'Tools',
-        color: '#39ff14',
-        skills: [
-            { name: 'Git', icon: <FaGitAlt /> },
-            { name: 'Figma', icon: <FaFigma /> },
-            { name: 'Postman', icon: <SiPostman /> },
-            { name: 'Vercel', icon: <SiVercel /> },
-            { name: 'Netlify', icon: <SiNetlify /> },
-        ],
-        iconColors: ['text-orange-400', 'text-pink-400', 'text-orange-300', 'text-white', 'text-teal-400'],
-    },
-];
-
-/* Float keyframes injected once */
-const floatStyle = `
-@keyframes skillFloat {
-  0%,100% { transform: translateY(0px) rotate(0deg); }
-  33%      { transform: translateY(-6px) rotate(2deg); }
-  66%      { transform: translateY(-3px) rotate(-1deg); }
-}
-@keyframes borderGlow {
-  0%,100% { box-shadow: 0 0 8px rgba(0,0,0,0); }
-  50%      { box-shadow: 0 0 18px var(--glow-color, #00d4ff); }
-}
-`;
-
-const SkillCard = ({ skill, iconColor, index, color }) => (
+// Use standard Tailwind colors and specific branding colors
+const SkillNode = ({ icon, name }) => (
     <motion.div
-        initial={{ opacity: 0, y: 30, scale: 0.8 }}
-        whileInView={{ opacity: 1, y: 0, scale: 1 }}
-        viewport={{ once: true, margin: '-30px' }}
-        transition={{
-            duration: 0.5,
-            delay: index * 0.07,
-            ease: [0.16, 1, 0.3, 1],
-        }}
-        whileHover={{ scale: 1.12, rotate: [-1, 1, -1, 0] }}
-        className="relative flex flex-col items-center justify-center gap-2.5 rounded-2xl border border-white/8 bg-white/[0.03] group cursor-default"
-        style={{
-            aspectRatio: '1 / 1',
-            padding: '14px 8px',
-            '--glow-color': color,
-            animation: `skillFloat ${3.5 + index * 0.3}s ease-in-out ${index * 0.2}s infinite`,
-        }}
-        onMouseEnter={e => {
-            e.currentTarget.style.borderColor = color + '60';
-            e.currentTarget.style.background = color + '12';
-            e.currentTarget.style.boxShadow = `0 0 24px ${color}30, inset 0 0 20px ${color}08`;
-            e.currentTarget.style.animation = 'none';
-        }}
-        onMouseLeave={e => {
-            e.currentTarget.style.borderColor = '';
-            e.currentTarget.style.background = '';
-            e.currentTarget.style.boxShadow = '';
-            e.currentTarget.style.animation = `skillFloat ${3.5 + index * 0.3}s ease-in-out ${index * 0.2}s infinite`;
-        }}
+        whileHover={{ scale: 1.05 }}
+        className="flex flex-col items-center justify-center w-24 h-24 sm:w-[110px] sm:h-[110px] rounded-3xl bg-[#0a0a0f]/80 backdrop-blur-xl border border-white/5 shadow-2xl group hover:border-[#FFD700]/50 hover:bg-[#111] hover:shadow-[0_10px_40px_rgba(255,215,0,0.15)] transition-all duration-300 z-10 relative cursor-default"
     >
-        {/* Corner accent dots */}
-        <div className="absolute top-2 right-2 w-1 h-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-            style={{ background: color }} />
-
-        {/* Icon */}
-        <div className={`text-3xl flex items-center justify-center w-full ${iconColor}
-        group-hover:scale-110 transition-transform duration-300`}>
-            {skill.icon}
+        <div className="text-3xl sm:text-4xl mb-3 group-hover:scale-110 group-hover:-translate-y-1 transition-all duration-300 drop-shadow-md">
+            {icon}
         </div>
-
-        {/* Label */}
-        <span className="text-[10px] font-mono text-slate-500 group-hover:text-slate-300
-        transition-colors leading-tight text-center w-full px-1 truncate">
-            {skill.name}
+        <span className="text-xs sm:text-sm text-slate-300 font-medium tracking-wide">
+            {name}
         </span>
     </motion.div>
 );
 
-const Skills = () => (
-    <section className="relative py-32 px-6 overflow-hidden">
-        {/* inject float keyframes */}
-        <style>{floatStyle}</style>
+// Vertical line component
+const VLine = ({ height = "h-12", classes = "" }) => (
+    <div className={`w-[2px] bg-[#1e1e2d] mx-auto ${height} ${classes}`} />
+);
 
-        {/* Ambient glows */}
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full blur-[100px] opacity-10 pointer-events-none"
-            style={{ background: '#00d4ff' }} />
-        <div className="absolute bottom-1/4 right-1/4 w-48 h-48 rounded-full blur-[80px] opacity-10 pointer-events-none"
-            style={{ background: '#a855f7' }} />
+// Horizontal bracket component Top-Down (splits one into many)
+const HSplit = ({ width = "w-[240px]" }) => (
+    <div className="flex flex-col items-center w-full relative">
+        <VLine height="h-6" />
+        <div className={`${width} h-6 border-t-2 border-l-2 border-r-2 border-[#1e1e2d] rounded-t-xl`} />
+    </div>
+);
 
-        <div className="container mx-auto max-w-6xl relative z-10">
-            {/* Section label */}
+// Horizontal bracket component Bottom-Up (merges many into one)
+const HMerge = ({ width = "w-[160px]" }) => (
+    <div className="flex flex-col items-center w-full relative">
+        <div className={`${width} h-6 border-b-2 border-l-2 border-r-2 border-[#1e1e2d] rounded-b-xl`} />
+        <VLine height="h-6" />
+    </div>
+);
+
+const Skills = () => {
+    return (
+        <section className="relative py-32 px-4 sm:px-6 overflow-hidden flex flex-col items-center bg-[var(--bg)]">
+            {/* Background elements */}
+            <div className="absolute inset-0 pointer-events-none grid-overlay" />
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-2xl h-[500px] bg-[#FFD700]/5 blur-[120px] rounded-full pointer-events-none" />
+
+            {/* Header */}
             <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="section-label mb-4"
-            >
-                <span>03 — Skills</span>
-            </motion.div>
-
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: -20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="mb-16"
+                className="text-center mb-16 relative z-10 max-w-2xl mx-auto"
             >
-                <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                    My <span className="gradient-text">Tech Stack</span>
+                <h2 className="text-xs sm:text-sm tracking-[0.2em] text-slate-400 uppercase font-bold mb-4 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+                    THE <span className="text-4xl sm:text-5xl tracking-normal text-transparent bg-clip-text bg-gradient-to-r from-[#FFD700] via-[#FFE4B5] to-white font-extrabold capitalize filter drop-shadow-[0_0_15px_rgba(255,215,0,0.3)]">Skills</span> BEHIND THE MAGIC
                 </h2>
-                <p className="text-slate-500 max-w-lg">
-                    Tools and technologies I use to bring ideas to life.
+                <p className="text-slate-400 text-base sm:text-lg leading-relaxed mt-6">
+                    I enjoy creating beautiful, intuitive, and performant web applications with cutting-edge technologies.
                 </p>
             </motion.div>
 
-            <div className="space-y-14">
-                {skillGroups.map((group, gi) => (
-                    <motion.div
-                        key={group.category}
-                        initial={{ opacity: 0, y: 40 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.6, delay: gi * 0.12 }}
-                    >
-                        {/* Category header */}
-                        <div className="flex items-center gap-4 mb-6">
-                            <motion.div
-                                animate={{ boxShadow: [`0 0 8px ${group.color}60`, `0 0 20px ${group.color}cc`, `0 0 8px ${group.color}60`] }}
-                                transition={{ duration: 2, repeat: Infinity }}
-                                className="w-2 h-6 rounded-full flex-shrink-0"
-                                style={{ background: group.color }}
-                            />
-                            <h3 className="text-base font-semibold font-mono tracking-wider" style={{ color: group.color }}>
-                                {group.category}
-                            </h3>
-                            <div className="flex-1 h-px" style={{ background: `linear-gradient(to right, ${group.color}40, transparent)` }} />
-                        </div>
+            {/* Tree Structure */}
+            <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="relative w-full max-w-4xl flex flex-col items-center"
+            >
 
-                        {/* Icon grid — centered items */}
-                        <div className="grid grid-cols-4 sm:grid-cols-5 md:grid-cols-6 lg:grid-cols-8 gap-3 justify-items-center">
-                            {group.skills.map((skill, i) => (
-                                <SkillCard
-                                    key={skill.name}
-                                    skill={skill}
-                                    iconColor={group.iconColors[i]}
-                                    index={i}
-                                    color={group.color}
-                                />
-                            ))}
-                        </div>
-                    </motion.div>
-                ))}
-            </div>
-        </div>
-    </section>
-);
+                {/* ---------- ROW 1 ---------- */}
+                <div className="flex justify-center gap-16 sm:gap-[120px] relative z-10 w-full">
+                    <SkillNode icon={<FaHtml5 color="#E44D26" />} name="HTML" />
+                    <SkillNode icon={<FaCss3Alt color="#264DE4" />} name="CSS" />
+                </div>
+
+                {/* Connecting Logic 1 -> 2 */}
+                {/* The width must match the distance between centers of HTML and CSS.
+                    Centers overlap the elements. Each item is ~110px. Gap is 120px. 
+                    Distance = 110/2 + 120 + 110/2 = 230px. 
+                    Let's use a class to perfectly align it. */}
+                <div className="w-[160px] sm:w-[230px] -mt-1 z-0 relative">
+                    <div className="h-6 border-b-2 border-l-2 border-r-2 border-[#1e1e2d] rounded-b-xl" />
+                    <VLine height="h-6" />
+                </div>
+
+                {/* ---------- ROW 2 ---------- */}
+                <div className="flex justify-center relative z-10">
+                    <SkillNode icon={<FaJs color="#F7DF1E" />} name="JavaScript" />
+                </div>
+
+                {/* Connecting Logic 2 -> 3 */}
+                {/* Splits into 3. Total width between outer items.
+                    React to Tailwind center distance:
+                    React (110), Next (110), Tailwind (110)
+                    Gaps: 60px * 2 = 120. Width = 110 + 60 + 110 + 60 + 110 = 450 total.
+                    Centers distance = (110/2 + 60 + 110 + 60 + 110/2) = 340px! 
+                */}
+                <div className="w-[256px] sm:w-[340px] -mt-1 z-0 relative">
+                    <VLine height="h-6" />
+                    <div className="h-6 border-t-2 border-l-2 border-r-2 border-[#1e1e2d] rounded-t-xl" />
+                    {/* The middle vertical drop */}
+                    <div className="absolute left-1/2 -translate-x-1/2 top-6 h-6 w-[2px] bg-[#1e1e2d]" />
+                </div>
+
+                {/* ---------- ROW 3 ---------- */}
+                {/* 110px items + 60px gap = 170px center-to-center. For mobile 24*4=96px + 32px gap = 128px! */}
+                <div className="flex justify-center gap-8 sm:gap-[60px] relative z-10 w-full mb-0">
+                    <SkillNode icon={<FaReact color="#61DAFB" />} name="React" />
+                    <SkillNode icon={<SiNextdotjs color="#ffffff" />} name="Next.js" />
+                    <SkillNode icon={<SiTailwindcss color="#38BDF8" />} name="Tailwind" />
+                </div>
+
+                {/* Connecting Logic 3 -> 4 */}
+                <div className="flex justify-center gap-8 sm:gap-[60px] w-full z-0 relative -mt-1">
+                    <div className="w-[96px] sm:w-[110px] flex justify-center"><VLine height="h-10" /></div>
+                    <div className="w-[96px] sm:w-[110px] flex justify-center"><VLine height="h-10" /></div>
+                    <div className="w-[96px] sm:w-[110px] flex justify-center"><VLine height="h-10" /></div>
+                </div>
+
+                {/* ---------- ROW 4 ---------- */}
+                <div className="flex justify-center gap-8 sm:gap-[60px] relative z-10 w-full -mt-1">
+                    <SkillNode icon={<SiRedis color="#DC382D" />} name="Redis" />
+                    <SkillNode icon={<SiMongodb color="#47A248" />} name="MongoDB" />
+                    <SkillNode icon={<FaNodeJs color="#339933" />} name="Node.js" />
+                </div>
+
+            </motion.div>
+        </section>
+    );
+};
 
 export default Skills;

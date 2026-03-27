@@ -34,13 +34,13 @@ const CustomCursor = () => {
 
         const onEnter = () => {
             dot.style.transform = 'translate(-50%,-50%) scale(1.8)';
-            dot.style.background = '#a855f7';
+            dot.style.background = '#FFFACD';
             ring.style.transform = 'translate(-50%,-50%) scale(1.5)';
             ring.style.borderColor = 'rgba(168,85,247,0.6)';
         };
         const onLeave = () => {
             dot.style.transform = 'translate(-50%,-50%) scale(1)';
-            dot.style.background = '#00d4ff';
+            dot.style.background = '#FFD700';
             ring.style.transform = 'translate(-50%,-50%) scale(1)';
             ring.style.borderColor = 'rgba(0,212,255,0.5)';
         };
@@ -64,9 +64,9 @@ const CustomCursor = () => {
                 className="cursor-dot"
                 style={{
                     position: 'fixed', zIndex: 99999, pointerEvents: 'none',
-                    width: 8, height: 8, background: '#00d4ff', borderRadius: '50%',
+                    width: 8, height: 8, background: '#FFD700', borderRadius: '50%',
                     transform: 'translate(-50%,-50%)', transition: 'transform 0.2s, background 0.2s',
-                    boxShadow: '0 0 10px #00d4ff, 0 0 20px #00d4ff'
+                    boxShadow: '0 0 10px #FFD700, 0 0 20px #FFD700'
                 }}
             />
             <div

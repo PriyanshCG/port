@@ -56,11 +56,14 @@ const Navbar = () => {
                     className="flex items-center gap-2 group"
                     whileHover={{ scale: 1.02 }}
                 >
-                    <div className="w-8 h-8 border border-[#00d4ff]/50 flex items-center justify-center group-hover:border-[#00d4ff] transition-colors">
-                        <FaTerminal className="text-[#00d4ff] text-xs" />
+                    <div className="w-8 h-8 border border-[#FFD700]/50 flex items-center justify-center group-hover:border-[#FFD700] transition-colors">
+                        <FaTerminal className="text-[#FFD700] text-xs" />
                     </div>
-                    <span className="font-mono text-sm font-bold text-white">
-                        priyansh<span className="text-[#00d4ff]">@</span>dev<span className="text-[#a855f7]">:~$</span>
+                    <span className="font-mono text-xl font-bold tracking-tighter flex items-center gap-1 group-hover:drop-shadow-[0_0_8px_rgba(255,215,0,0.8)] transition-all duration-300">
+                        <span className="text-[#FFD700]">&lt;</span>
+                        <span className="text-white">Priyansh</span>
+                        <span className="text-[#FFFACD]">/</span>
+                        <span className="text-[#FFD700]">&gt;</span>
                     </span>
                 </motion.a>
 
@@ -74,20 +77,20 @@ const Navbar = () => {
                                     href={item.href}
                                     onClick={e => scrollTo(e, item.href)}
                                     className={`relative px-4 py-2 text-sm font-mono transition-all duration-300 block rounded ${isActive
-                                        ? 'text-[#00d4ff]'
-                                        : 'text-slate-400 hover:text-[#00d4ff]'
+                                        ? 'text-[#FFD700]'
+                                        : 'text-slate-400 hover:text-[#FFD700]'
                                         }`}
                                 >
                                     {isActive && (
                                         <motion.span
                                             layoutId="nav-active"
-                                            className="absolute inset-0 bg-[#00d4ff]/8 rounded border border-[#00d4ff]/20"
+                                            className="absolute inset-0 bg-[#FFD700]/8 rounded border border-[#FFD700]/20"
                                             transition={{ type: 'spring', stiffness: 300, damping: 30 }}
                                         />
                                     )}
                                     <span className="relative z-10">{item.name}</span>
                                     {isActive && (
-                                        <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#00d4ff] rounded-full shadow-[0_0_6px_#00d4ff]" />
+                                        <span className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#FFD700] rounded-full shadow-[0_0_6px_#FFD700]" />
                                     )}
                                 </a>
                             </li>
@@ -104,7 +107,7 @@ const Navbar = () => {
                     {[0, 1, 2].map(i => (
                         <motion.span
                             key={i}
-                            className="block h-[1.5px] bg-[#00d4ff] rounded"
+                            className="block h-[1.5px] bg-[#FFD700] rounded"
                             style={{ width: i === 1 ? 20 : 26 }}
                             animate={mobileOpen
                                 ? i === 0 ? { rotate: 45, y: 5 } : i === 2 ? { rotate: -45, y: -5 } : { opacity: 0 }
@@ -123,7 +126,7 @@ const Navbar = () => {
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }}
-                        className="md:hidden navbar-glass border-t border-[#00d4ff]/10 px-6 pb-4"
+                        className="md:hidden navbar-glass border-t border-[#FFD700]/10 px-6 pb-4"
                     >
                         {navItems.map(item => (
                             <a
@@ -131,10 +134,10 @@ const Navbar = () => {
                                 href={item.href}
                                 onClick={e => scrollTo(e, item.href)}
                                 className={`block py-3 text-sm font-mono border-b border-white/5 transition-colors ${activeSection === item.href.substring(1)
-                                    ? 'text-[#00d4ff]' : 'text-slate-400'
+                                    ? 'text-[#FFD700]' : 'text-slate-400'
                                     }`}
                             >
-                                <span className="text-[#00d4ff]/50">~/</span> {item.name}
+                                <span className="text-[#FFD700]/50">~/</span> {item.name}
                             </a>
                         ))}
                     </motion.div>

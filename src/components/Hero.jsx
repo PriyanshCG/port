@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaLinkedin, FaTwitter, FaChevronDown } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaChevronDown, FaYoutube } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
+import { SiLeetcode, SiSololearn } from 'react-icons/si';
 import { useState, useEffect } from 'react';
 import profilePic from './pic.jpeg';
 
@@ -46,9 +48,9 @@ const TypingText = () => {
 
     return (
         <div className="h-10 flex items-center">
-            <span className="text-xl md:text-2xl font-mono text-[#00d4ff]">
+            <span className="text-xl md:text-2xl font-mono text-[#FFD700]">
                 {displayed}
-                <span className="inline-block w-[2px] h-[1.2em] bg-[#00d4ff] ml-1 align-middle animate-pulse" />
+                <span className="inline-block w-[2px] h-[1.2em] bg-[#FFD700] ml-1 align-middle animate-pulse" />
             </span>
         </div>
     );
@@ -63,10 +65,10 @@ const Hero = () => {
     return (
         <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-24 pb-32 px-6">
             {/* Corner accents */}
-            <div className="absolute top-20 left-6 w-16 h-16 border-t-2 border-l-2 border-[#00d4ff]/30 pointer-events-none" />
-            <div className="absolute top-20 right-6 w-16 h-16 border-t-2 border-r-2 border-[#a855f7]/30 pointer-events-none" />
-            <div className="absolute bottom-8 left-6 w-16 h-16 border-b-2 border-l-2 border-[#a855f7]/30 pointer-events-none" />
-            <div className="absolute bottom-8 right-6 w-16 h-16 border-b-2 border-r-2 border-[#00d4ff]/30 pointer-events-none" />
+            <div className="absolute top-20 left-6 w-16 h-16 border-t-2 border-l-2 border-[#FFD700]/30 pointer-events-none" />
+            <div className="absolute top-20 right-6 w-16 h-16 border-t-2 border-r-2 border-[#FFFACD]/30 pointer-events-none" />
+            <div className="absolute bottom-8 left-6 w-16 h-16 border-b-2 border-l-2 border-[#FFFACD]/30 pointer-events-none" />
+            <div className="absolute bottom-8 right-6 w-16 h-16 border-b-2 border-r-2 border-[#FFD700]/30 pointer-events-none" />
 
             <div className="container mx-auto max-w-7xl relative z-10 flex flex-col lg:flex-row items-center justify-between gap-16">
                 {/* ─── Text content ─── */}
@@ -81,9 +83,9 @@ const Hero = () => {
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.4 }}
-                        className="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-[#00d4ff]/20 bg-[#00d4ff]/5 rounded-full backdrop-blur-md"
+                        className="inline-flex items-center gap-2 px-4 py-2 mb-8 border border-[#FFD700]/20 bg-[#FFD700]/5 rounded-full backdrop-blur-md"
                     >
-                        <span className="w-2 h-2 rounded-full bg-[#39ff14] animate-pulse shadow-[0_0_8px_#39ff14]" />
+                        <span className="w-2 h-2 rounded-full bg-[#FFD700] animate-pulse shadow-[0_0_8px_#FFD700]" />
                         <span className="text-xs font-mono text-slate-400 tracking-widest uppercase">
                             Available for opportunities
                         </span>
@@ -120,7 +122,7 @@ const Hero = () => {
                         className="text-base md:text-lg text-slate-400 max-w-xl mx-auto lg:mx-0 mb-10 leading-relaxed"
                     >
                         B.Tech CSE student at Coding Gita × Swaminarayan University who blends{' '}
-                        <span className="text-[#00d4ff]">logic with creativity</span> to craft modern,
+                        <span className="text-[#FFD700]">logic with creativity</span> to craft modern,
                         high-performance web applications.
                     </motion.p>
 
@@ -161,7 +163,10 @@ const Hero = () => {
                         {[
                             { icon: <FaGithub />, href: 'https://github.com/PriyanshCG', label: 'GitHub' },
                             { icon: <FaLinkedin />, href: 'https://www.linkedin.com/in/priyansh-patel-75264839a/', label: 'LinkedIn' },
-                            { icon: <FaTwitter />, href: 'https://x.com/Priyanshhh_300', label: 'Twitter' },
+                            { icon: <FaXTwitter />, href: 'https://x.com/Priyanshhh_300', label: 'Twitter' },
+                            { icon: <FaYoutube />, href: 'https://www.youtube.com/@PriyanshPatel-d7i', label: 'YouTube' },
+                            { icon: <SiSololearn />, href: 'https://www.sololearn.com/en/profile/35528286', label: 'Sololearn' },
+                            { icon: <SiLeetcode />, href: 'https://leetcode.com/u/priyanshhh30/', label: 'LeetCode' },
                         ].map(({ icon, href, label }) => (
                             <motion.a
                                 key={label}
@@ -169,7 +174,7 @@ const Hero = () => {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={label}
-                                className="w-11 h-11 flex items-center justify-center text-lg text-slate-400 hover:text-[#00d4ff] border border-white/10 hover:border-[#00d4ff]/50 rounded transition-all duration-300 backdrop-blur-sm hover:bg-[#00d4ff]/5 hover:shadow-[0_0_15px_rgba(0,212,255,0.2)]"
+                                className="w-11 h-11 flex items-center justify-center text-lg text-slate-400 hover:text-[#FFD700] border border-white/10 hover:border-[#FFD700]/50 rounded transition-all duration-300 backdrop-blur-sm hover:bg-[#FFD700]/5 hover:shadow-[0_0_15px_rgba(0,212,255,0.2)]"
                                 whileHover={{ scale: 1.1, y: -2 }}
                                 whileTap={{ scale: 0.95 }}
                             >
@@ -184,22 +189,22 @@ const Hero = () => {
                     initial={{ opacity: 0, scale: 0.85, rotate: 3 }}
                     animate={{ opacity: 1, scale: 1, rotate: 0 }}
                     transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
-                    className="relative flex-shrink-0 float-anim"
+                    className="relative flex-shrink-0 float-anim group cursor-pointer"
                 >
                     {/* Glow rings */}
-                    <div className="absolute inset-[-20px] rounded-full border border-[#00d4ff]/10 animate-[spin_12s_linear_infinite]" />
-                    <div className="absolute inset-[-40px] rounded-full border border-[#a855f7]/8 animate-[spin_18s_linear_infinite_reverse]" />
+                    <div className="absolute inset-[-20px] rounded-full border border-[#FFD700]/10 animate-[spin_12s_linear_infinite]" />
+                    <div className="absolute inset-[-40px] rounded-full border border-[#FFFACD]/8 animate-[spin_18s_linear_infinite_reverse]" />
 
                     {/* Image frame */}
-                    <div className="relative w-72 h-80 sm:w-80 sm:h-96">
+                    <div className="relative w-72 h-80 sm:w-80 sm:h-96 rounded-2xl shadow-xl transition-all duration-300 hover:shadow-[0_0_40px_rgba(255,215,0,0.3)]">
                         {/* Outer border with gradient */}
-                        <div className="absolute inset-0 rounded-2xl"
+                        <div className="absolute inset-0 rounded-2xl opacity-50"
                             style={{
-                                background: 'linear-gradient(135deg, rgba(0,212,255,0.3), rgba(168,85,247,0.3))',
+                                background: 'linear-gradient(135deg, rgba(255, 215, 0,0.4), rgba(255, 250, 205,0.4))',
                                 padding: '1.5px',
                             }}
                         >
-                            <div className="w-full h-full rounded-2xl bg-[#050510]" />
+                            <div className="w-full h-full rounded-2xl bg-[#000000]" />
                         </div>
 
                         {/* Actual image */}
@@ -209,8 +214,6 @@ const Hero = () => {
                                 alt="Priyansh Patel"
                                 className="w-full h-full object-cover object-center"
                             />
-                            {/* Glass overlay */}
-                            <div className="absolute inset-0 bg-gradient-to-t from-[#050510]/60 via-transparent to-transparent" />
                         </div>
 
                         {/* Floating badge – top */}
@@ -218,11 +221,11 @@ const Hero = () => {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 1.4 }}
-                            className="absolute -top-4 -right-4 glass-card px-3 py-2 rounded-lg border border-[#00d4ff]/20 backdrop-blur-xl"
+                            className="absolute -top-4 -right-4 glass-card px-3 py-2 rounded-lg border border-[#FFD700]/20 backdrop-blur-xl"
                         >
                             <div className="flex items-center gap-2">
-                                <span className="w-2 h-2 bg-[#39ff14] rounded-full animate-pulse shadow-[0_0_6px_#39ff14]" />
-                                <span className="text-xs font-mono text-[#00d4ff]">Open to work</span>
+                                <span className="w-2 h-2 bg-[#FFD700] rounded-full animate-pulse shadow-[0_0_6px_#FFD700]" />
+                                <span className="text-xs font-mono text-[#FFD700]">Open to work</span>
                             </div>
                         </motion.div>
 
@@ -231,11 +234,11 @@ const Hero = () => {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 1.6 }}
-                            className="absolute -bottom-4 -left-4 glass-card px-3 py-2 rounded-lg border border-[#a855f7]/20 backdrop-blur-xl"
+                            className="absolute -bottom-4 -left-4 glass-card px-3 py-2 rounded-lg border border-[#FFFACD]/20 backdrop-blur-xl"
                         >
                             <div className="text-xs font-mono">
                                 <span className="text-slate-500">{'> '}</span>
-                                <span className="text-[#a855f7]">Full-Stack Dev</span>
+                                <span className="text-[#FFFACD]">Full-Stack Dev</span>
                             </div>
                         </motion.div>
                     </div>
@@ -248,7 +251,7 @@ const Hero = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.8 }}
                 onClick={scrollDown}
-                className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 hover:text-[#00d4ff] transition-colors group"
+                className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-slate-500 hover:text-[#FFD700] transition-colors group"
                 aria-label="Scroll down"
             >
                 <span className="text-xs font-mono tracking-[3px] uppercase">Scroll</span>
@@ -256,7 +259,7 @@ const Hero = () => {
                     animate={{ y: [0, 8, 0] }}
                     transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
                 >
-                    <FaChevronDown className="text-sm group-hover:text-[#00d4ff] transition-colors" />
+                    <FaChevronDown className="text-sm group-hover:text-[#FFD700] transition-colors" />
                 </motion.div>
             </motion.button>
         </section>

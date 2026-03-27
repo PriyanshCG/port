@@ -11,8 +11,9 @@ const featuredProjects = [
         tech: ['React.js', 'Tailwind CSS'],
         live: 'https://art-park-code-forge-hackathon-virid.vercel.app/',
         github: 'https://github.com/HARSHILL2023/ArtPark_CodeForge_Hackathon',
-        color: '#00d4ff',
-        gradient: 'from-[#00d4ff]/20 to-transparent',
+        color: '#FFD700',
+        gradient: 'from-[#FFD700]/20 to-transparent',
+        image: '/codeforge.png',
     },
     {
         num: '02',
@@ -22,8 +23,9 @@ const featuredProjects = [
         tech: ['React.js', 'Tailwind CSS'],
         live: 'https://skillsense-ai-seven.vercel.app/',
         github: 'https://github.com/TrikamDevasi/TEAM_QUANTUM_CODERS-SU-',
-        color: '#a855f7',
-        gradient: 'from-[#a855f7]/20 to-transparent',
+        color: '#FFFACD',
+        gradient: 'from-[#FFFACD]/20 to-transparent',
+        image: '/skillsense.png',
     },
     {
         num: '03',
@@ -33,32 +35,42 @@ const featuredProjects = [
         tech: ['HTML', 'CSS'],
         live: 'https://pri-chrono24-clone.netlify.app/',
         github: 'https://github.com/PriyanshCG/sem1-assignments/tree/main/CSS/website%20clone/web1',
-        color: '#39ff14',
-        gradient: 'from-[#39ff14]/20 to-transparent',
+        color: '#FFD700',
+        gradient: 'from-[#FFD700]/20 to-transparent',
+        image: '/chrono24.png',
     },
 ];
 
 const moreProjects = [
     {
         title: 'Razer Clone',
+        caption: 'Gaming accessories brand landing page with immersive dark mode.',
         desc: 'High-end gaming UI clone with premium aesthetics and responsive design.',
         tech: ['HTML', 'CSS', 'JS'],
-        github: '#',
-        color: '#00d4ff',
+        github: 'https://github.com/PriyanshCG/sem1-assignments/tree/main/CSS/website%20clone/webb3',
+        live: 'https://pri-razer-clone.netlify.app/',
+        color: '#FFD700',
+        image: '/razer.png',
     },
     {
         title: 'Polygon Clone',
+        caption: 'Modern tech news website with grid-based layout structure.',
         desc: 'Clean, responsive UI design focused on layout precision and visual hierarchy.',
         tech: ['HTML', 'CSS'],
-        github: '#',
-        color: '#a855f7',
+        github: 'https://github.com/PriyanshCG/sem1-assignments/tree/main/CSS/website%20clone/web6',
+        live: 'https://pri-polygon-clone.netlify.app/polygon',
+        color: '#FFFACD',
+        image: '/polygon.png',
     },
     {
-        title: 'Dropbox Clone',
+        title: 'Drop Clone',
+        caption: 'Cloud storage landing page focusing on minimal layout.',
         desc: 'Cloud platform UI clone showcasing modern SaaS design patterns.',
         tech: ['HTML', 'CSS', 'JS'],
-        github: '#',
-        color: '#39ff14',
+        github: 'https://github.com/PriyanshCG/sem1-assignments/tree/main/CSS/website%20clone/web5',
+        live: 'https://pri-drop-clone.netlify.app/',
+        color: '#FFD700',
+        image: '/drop.png',
     },
 ];
 
@@ -108,11 +120,12 @@ const TiltCard = ({ project }) => {
                 }}
             />
 
-            {/* Top accent bar */}
-            <div
-                className="h-[2px] w-full"
-                style={{ background: `linear-gradient(90deg, ${project.color}80, transparent)` }}
-            />
+            {/* Image Section */}
+            <div className="w-full h-40 overflow-hidden relative border-b border-white/5">
+                <div className="absolute inset-0 bg-black/40 z-10 transition-colors group-hover:bg-black/10 duration-500" />
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <div className="absolute bottom-0 left-0 w-full h-[2px] z-20" style={{ background: `linear-gradient(90deg, ${project.color}80, transparent)` }} />
+            </div>
 
             <div className="p-8 relative z-10">
                 {/* Header */}
@@ -182,30 +195,54 @@ const SmallCard = ({ project, index }) => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: index * 0.1 }}
-        whileHover={{ y: -4, borderColor: `${project.color}60` }}
-        className="glass-card p-6 group cursor-default border border-transparent transition-all duration-300"
+        className="glass-card flex flex-col [perspective:1000px] cursor-default border border-transparent overflow-hidden group"
         style={{ '--card-color': project.color }}
     >
-        <div className="flex items-start justify-between mb-3">
-            <FaCode className="text-xl" style={{ color: project.color }} />
-            <a
-                href={project.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-slate-600 hover:text-white transition-colors"
-                onClick={e => project.github === '#' && e.preventDefault()}
-            >
-                <FaGithub />
-            </a>
-        </div>
-        <h4 className="font-bold text-white mb-2 group-hover:text-white">{project.title}</h4>
-        <p className="text-slate-500 text-xs leading-relaxed mb-4">{project.desc}</p>
-        <div className="flex flex-wrap gap-1.5">
-            {project.tech.map(t => (
-                <span key={t} className="text-xs px-2 py-0.5 rounded font-mono text-slate-400 border border-white/8">
-                    {t}
-                </span>
-            ))}
+        {/* Image Section */}
+        {project.image && (
+            <div className="w-full h-40 overflow-hidden relative border-b border-white/5">
+                <div className="absolute inset-0 bg-black/40 z-10 transition-colors group-hover:bg-black/10 duration-500" />
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <div className="absolute bottom-0 left-0 w-full h-[2px] z-20" style={{ background: `linear-gradient(90deg, ${project.color}80, transparent)` }} />
+            </div>
+        )}
+
+        <div className="p-6 flex flex-col flex-grow relative z-10">
+            <div className="flex items-start justify-between mb-4">
+                <FaCode className="text-xl" style={{ color: project.color }} />
+            </div>
+            <h4 className="font-bold text-white mb-2">{project.title}</h4>
+            <p className="text-slate-500 text-xs leading-relaxed mb-6 flex-grow">{project.desc}</p>
+
+            <div className="flex flex-wrap gap-1.5 mb-6">
+                {project.tech.map(t => (
+                    <span key={t} className="text-xs px-2 py-0.5 rounded font-mono text-slate-400 border border-white/8">
+                        {t}
+                    </span>
+                ))}
+            </div>
+
+            <div className="flex items-center gap-4 mt-auto">
+                {project.live && (
+                    <a
+                        href={project.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+                    >
+                        <FaExternalLinkAlt className="text-[10px]" /> Live Demo
+                    </a>
+                )}
+                <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+                    onClick={e => project.github === '#' && e.preventDefault()}
+                >
+                    <FaGithub className="text-[10px]" /> Source Code
+                </a>
+            </div>
         </div>
     </motion.div>
 );
@@ -244,6 +281,18 @@ const Projects = () => {
                     {featuredProjects.map(p => <TiltCard key={p.num} project={p} />)}
                 </div>
 
+                {/* More projects */}
+                {showMore && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5 }}
+                        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10"
+                    >
+                        {moreProjects.map((p, i) => <SmallCard key={p.title} project={p} index={i} />)}
+                    </motion.div>
+                )}
+
                 {/* View more toggle */}
                 <div className="text-center mb-10">
                     <motion.button
@@ -252,21 +301,9 @@ const Projects = () => {
                         onClick={() => setShowMore(s => !s)}
                         className="btn-neon-blue px-8 py-3.5 rounded font-mono text-sm font-semibold"
                     >
-                        {showMore ? '[ Hide Projects ]' : '[ View More Projects ]'}
+                        {showMore ? '[ View Less Projects ]' : '[ View More Projects ]'}
                     </motion.button>
                 </div>
-
-                {/* More projects */}
-                {showMore && (
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.5 }}
-                        className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5"
-                    >
-                        {moreProjects.map((p, i) => <SmallCard key={p.title} project={p} index={i} />)}
-                    </motion.div>
-                )}
             </div>
         </section>
     );

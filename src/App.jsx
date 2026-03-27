@@ -44,7 +44,7 @@ function App() {
           <div className="scanline" />
           <ParticleField />
 
-          <div className="relative z-10 text-white selection:bg-[#00d4ff]/20 selection:text-white">
+          <div className="relative z-10 text-white selection:bg-[#FFD700]/20 selection:text-white">
             <Navbar />
 
             <main>

@@ -72,7 +72,7 @@ const COMMANDS = {
         output: [
             { type: 'success', text: '▶ Contact Information' },
             { type: 'text', text: '' },
-            { type: 'contact', label: 'Email   ', value: 'priyansh.patel.a.cg@gmail.com' },
+            { type: 'contact', label: 'Email   ', value: 'priyansh30407@gmail.com' },
             { type: 'contact', label: 'GitHub  ', value: 'github.com/PriyanshCG' },
             { type: 'contact', label: 'LinkedIn', value: 'linkedin.com/in/priyansh-patel-75264839a' },
             { type: 'contact', label: 'Twitter ', value: 'x.com/Priyanshhh_300' },
@@ -129,48 +129,48 @@ const WELCOME = [
 const LineRenderer = ({ line }) => {
     switch (line.type) {
         case 'header':
-            return <div className="text-[#00d4ff]/60 text-xs">{line.text}</div>;
+            return <div className="text-[#FFD700]/60 text-xs">{line.text}</div>;
         case 'success':
-            return <div className="text-[#39ff14] font-bold">{line.text}</div>;
+            return <div className="text-[#FFD700] font-bold">{line.text}</div>;
         case 'error':
             return <div className="text-red-400">{line.text}</div>;
         case 'info':
-            return <div className="text-[#a855f7]">{line.text}</div>;
+            return <div className="text-[#FFFACD]">{line.text}</div>;
         case 'category':
-            return <div className="text-[#00d4ff] font-semibold mt-1">{line.text}</div>;
+            return <div className="text-[#FFD700] font-semibold mt-1">{line.text}</div>;
         case 'skill':
             return <div className="text-slate-300">{line.text}</div>;
         case 'cmd':
             return (
                 <div className="flex gap-3">
-                    <span className="text-[#00d4ff] w-16 flex-shrink-0">{line.label}</span>
+                    <span className="text-[#FFD700] w-16 flex-shrink-0">{line.label}</span>
                     <span className="text-slate-400">{line.desc}</span>
                 </div>
             );
         case 'edu':
             return (
                 <div className="flex gap-4 items-start">
-                    <span className="text-[#a855f7] font-mono w-14 flex-shrink-0">[{line.year}]</span>
+                    <span className="text-[#FFFACD] font-mono w-14 flex-shrink-0">[{line.year}]</span>
                     <span className="text-slate-300">{line.text}</span>
                 </div>
             );
         case 'contact':
             return (
                 <div className="flex gap-3">
-                    <span className="text-[#00d4ff] w-20 flex-shrink-0">{line.label}</span>
+                    <span className="text-[#FFD700] w-20 flex-shrink-0">{line.label}</span>
                     <span className="text-slate-300">{line.value}</span>
                 </div>
             );
         case 'project':
             return (
                 <div className="flex gap-3 items-start">
-                    <span className="text-[#a855f7]">[{line.num}]</span>
+                    <span className="text-[#FFFACD]">[{line.num}]</span>
                     <div>
-                        <span className="text-[#00d4ff] font-semibold">{line.name}</span>
+                        <span className="text-[#FFD700] font-semibold">{line.name}</span>
                         <span className="text-slate-500 text-xs ml-2">— {line.tech}</span>
                         {line.url && (
                             <a href={line.url} target="_blank" rel="noopener noreferrer"
-                                className="block text-xs text-slate-500 hover:text-[#00d4ff] transition-colors mt-0.5 ml-0 font-mono truncate">
+                                className="block text-xs text-slate-500 hover:text-[#FFD700] transition-colors mt-0.5 ml-0 font-mono truncate">
                                 → {line.url}
                             </a>
                         )}
@@ -290,7 +290,7 @@ const Terminal = () => {
                             {history.map((line, i) => (
                                 <div key={i}>
                                     {line.type === 'prompt' ? (
-                                        <div className="text-[#00d4ff] mt-2">{line.text}</div>
+                                        <div className="text-[#FFD700] mt-2">{line.text}</div>
                                     ) : (
                                         <LineRenderer line={line} />
                                     )}
@@ -300,7 +300,7 @@ const Terminal = () => {
 
                         {/* Input line */}
                         <div className="terminal-input-line mt-3">
-                            <span className="text-[#00d4ff] text-xs font-mono flex-shrink-0">
+                            <span className="text-[#FFD700] text-xs font-mono flex-shrink-0">
                                 priyansh@dev:~$
                             </span>
                             <input
@@ -332,7 +332,7 @@ const Terminal = () => {
                         <button
                             key={cmd}
                             onClick={() => { execute(cmd); inputRef.current?.focus(); }}
-                            className="px-3 py-1.5 text-xs font-mono text-slate-500 border border-white/8 rounded hover:border-[#00d4ff]/40 hover:text-[#00d4ff] transition-all"
+                            className="px-3 py-1.5 text-xs font-mono text-slate-500 border border-white/8 rounded hover:border-[#FFD700]/40 hover:text-[#FFD700] transition-all"
                         >
                             {cmd}
                         </button>
