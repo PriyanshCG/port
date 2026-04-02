@@ -7,6 +7,7 @@ import Skills from './components/Skills';
 import Terminal from './components/Terminal';
 import Projects from './components/Projects';
 import Certificates from './components/Certificates';
+import Hackathon from './components/Hackathon';
 import Education from './components/Education';
 import Contact from './components/Contact';
 import ParticleField from './components/ParticleField';
@@ -70,6 +71,10 @@ function App() {
 
               <section id="certificates">
                 <Certificates />
+              </section>
+
+              <section id="hackathon">
+                <Hackathon />
               </section>
 
               <section id="education">

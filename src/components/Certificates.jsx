@@ -105,7 +105,7 @@ const TiltCertCard = ({ cert }) => {
             {/* Image Section */}
             <div className="w-full h-40 flex-shrink-0 overflow-hidden relative border-b border-white/5">
                 <div className="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/10 transition-colors duration-500" />
-                <img src={cert.image} alt={cert.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img src={`${import.meta.env.BASE_URL}${cert.image.startsWith('/') ? cert.image.slice(1) : cert.image}`} alt={cert.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute bottom-0 left-0 w-full h-[2px] z-20" style={{ background: `linear-gradient(90deg, ${cert.color}80, transparent)` }} />
                 <div className="absolute top-4 right-4 z-20 w-10 h-10 rounded-xl flex items-center justify-center text-xl bg-black/50 backdrop-blur-md"
                     style={{ color: cert.color, border: `1px solid ${cert.color}30` }}>

@@ -123,7 +123,7 @@ const TiltCard = ({ project }) => {
             {/* Image Section */}
             <div className="w-full h-40 overflow-hidden relative border-b border-white/5">
                 <div className="absolute inset-0 bg-black/40 z-10 transition-colors group-hover:bg-black/10 duration-500" />
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img src={`${import.meta.env.BASE_URL}${project.image.startsWith('/') ? project.image.slice(1) : project.image}`} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute bottom-0 left-0 w-full h-[2px] z-20" style={{ background: `linear-gradient(90deg, ${project.color}80, transparent)` }} />
             </div>
 
@@ -202,7 +202,7 @@ const SmallCard = ({ project, index }) => (
         {project.image && (
             <div className="w-full h-40 overflow-hidden relative border-b border-white/5">
                 <div className="absolute inset-0 bg-black/40 z-10 transition-colors group-hover:bg-black/10 duration-500" />
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img src={`${import.meta.env.BASE_URL}${project.image.startsWith('/') ? project.image.slice(1) : project.image}`} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute bottom-0 left-0 w-full h-[2px] z-20" style={{ background: `linear-gradient(90deg, ${project.color}80, transparent)` }} />
             </div>
         )}
