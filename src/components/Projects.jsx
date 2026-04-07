@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { FaGithub, FaExternalLinkAlt, FaCode } from 'react-icons/fa';
+import { FaGithub, FaExternalLinkAlt, FaCode, FaYoutube } from 'react-icons/fa';
 import { useState, useRef } from 'react';
 
 const featuredProjects = [
@@ -11,6 +11,7 @@ const featuredProjects = [
         tech: ['React.js', 'Tailwind CSS'],
         live: 'https://art-park-code-forge-hackathon-virid.vercel.app/',
         github: 'https://github.com/HARSHILL2023/ArtPark_CodeForge_Hackathon',
+        youtube: 'https://www.youtube.com/@PriyanshPatel-d7i',
         color: '#FFD700',
         gradient: 'from-[#FFD700]/20 to-transparent',
         image: '/codeforge.png',
@@ -23,6 +24,7 @@ const featuredProjects = [
         tech: ['React.js', 'Tailwind CSS'],
         live: 'https://skillsense-ai-seven.vercel.app/',
         github: 'https://github.com/TrikamDevasi/TEAM_QUANTUM_CODERS-SU-',
+        youtube: 'https://www.youtube.com/@PriyanshPatel-d7i',
         color: '#FFFACD',
         gradient: 'from-[#FFFACD]/20 to-transparent',
         image: '/skillsense.png',
@@ -35,6 +37,7 @@ const featuredProjects = [
         tech: ['HTML', 'CSS'],
         live: 'https://pri-chrono24-clone.netlify.app/',
         github: 'https://github.com/PriyanshCG/sem1-assignments/tree/main/CSS/website%20clone/web1',
+        youtube: 'https://youtu.be/ss5Y4wo_m3k?si=FtSfdFjAaQwQwyoT',
         color: '#FFD700',
         gradient: 'from-[#FFD700]/20 to-transparent',
         image: '/chrono24.png',
@@ -49,6 +52,7 @@ const moreProjects = [
         tech: ['HTML', 'CSS', 'JS'],
         github: 'https://github.com/PriyanshCG/sem1-assignments/tree/main/CSS/website%20clone/webb3',
         live: 'https://pri-razer-clone.netlify.app/',
+        youtube: 'https://youtu.be/1ITU4w0NNoo?si=Wx12fVLMCqeAxDrD',
         color: '#FFD700',
         image: '/razer.png',
     },
@@ -59,6 +63,7 @@ const moreProjects = [
         tech: ['HTML', 'CSS'],
         github: 'https://github.com/PriyanshCG/sem1-assignments/tree/main/CSS/website%20clone/web6',
         live: 'https://pri-polygon-clone.netlify.app/polygon',
+        youtube: 'https://youtu.be/fTuqEF0bDGg?si=mbmFJsOZovGg7R26',
         color: '#FFFACD',
         image: '/polygon.png',
     },
@@ -69,6 +74,7 @@ const moreProjects = [
         tech: ['HTML', 'CSS', 'JS'],
         github: 'https://github.com/PriyanshCG/sem1-assignments/tree/main/CSS/website%20clone/web5',
         live: 'https://pri-drop-clone.netlify.app/',
+        youtube: 'https://youtu.be/XAni0st0kZM?si=TeJulnBnaqT2zGeg',
         color: '#FFD700',
         image: '/drop.png',
     },
@@ -183,6 +189,17 @@ const TiltCard = ({ project }) => {
                         <FaGithub />
                         Source Code
                     </a>
+                    {project.youtube && (
+                        <a
+                            href={project.youtube}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+                        >
+                            <FaYoutube className="text-red-500" />
+                            Watch Video
+                        </a>
+                    )}
                 </div>
             </div>
         </motion.div>
@@ -242,6 +259,16 @@ const SmallCard = ({ project, index }) => (
                 >
                     <FaGithub className="text-[10px]" /> Source Code
                 </a>
+                {project.youtube && (
+                    <a
+                        href={project.youtube}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex items-center gap-2 text-xs font-mono text-slate-400 hover:text-white transition-colors"
+                    >
+                        <FaYoutube className="text-[10px] text-red-500" /> Video
+                    </a>
+                )}
             </div>
         </div>
     </motion.div>
