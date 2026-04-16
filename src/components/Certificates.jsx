@@ -1,7 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useRef } from 'react';
-import { FaExternalLinkAlt, FaCertificate, FaMedal } from 'react-icons/fa';
-import { SiCoursera, SiUdemy, SiFreecodecamp, SiGoogle } from 'react-icons/si';
+import { FaExternalLinkAlt, FaCertificate, FaMedal, FaTimes } from 'react-icons/fa';
 
 const certs = [
     {
@@ -53,6 +52,7 @@ const certs = [
         badge: 'Hackathon Achievement',
         link: '#',
         image: '/cert_hackathon.png',
+        rotate: true,
     },
 ];
 
@@ -105,7 +105,7 @@ const TiltCertCard = ({ cert }) => {
             {/* Image Section */}
             <div className="w-full h-40 flex-shrink-0 overflow-hidden relative border-b border-white/5">
                 <div className="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/10 transition-colors duration-500" />
-                <img src={`${import.meta.env.BASE_URL}${cert.image.startsWith('/') ? cert.image.slice(1) : cert.image}`} alt={cert.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img src={`${import.meta.env.BASE_URL}${cert.image.startsWith('/') ? cert.image.slice(1) : cert.image}`} alt={cert.title} className={`w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ${cert.rotate ? '-rotate-90 scale-150' : ''}`} />
                 <div className="absolute bottom-0 left-0 w-full h-[2px] z-20" style={{ background: `linear-gradient(90deg, ${cert.color}80, transparent)` }} />
                 <div className="absolute top-4 right-4 z-20 w-10 h-10 rounded-xl flex items-center justify-center text-xl bg-black/50 backdrop-blur-md"
                     style={{ color: cert.color, border: `1px solid ${cert.color}30` }}>
@@ -145,55 +145,111 @@ const TiltCertCard = ({ cert }) => {
     );
 };
 
-const Certificates = () => (
-    <section className="relative py-32 overflow-hidden px-6">
-        {/* ambient glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] blur-[120px] rounded-full opacity-10 pointer-events-none"
-            style={{ background: 'linear-gradient(90deg, #FFD700, #FFFACD)' }} />
+const Certificates = () => {
+    const [selectedCert, setSelectedCert] = useState(null);
 
-        <div className="container mx-auto max-w-6xl relative z-10">
-            {/* Section label */}
-            <motion.div
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="section-label mb-4"
-            >
-                <span>06 — Certificates</span>
-            </motion.div>
+    return (
+        <section className="relative py-32 overflow-hidden px-6">
+            {/* ambient glow */}
+            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[200px] blur-[120px] rounded-full opacity-10 pointer-events-none"
+                style={{ background: 'linear-gradient(90deg, #FFD700, #FFFACD)' }} />
 
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="mb-14"
-            >
-                <div className="flex items-center gap-4 mb-4">
-                    <motion.div
-                        animate={{ rotate: [0, 10, -10, 0] }}
-                        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                        className="text-3xl"
-                    >
-                        <FaMedal className="text-[#FFD700]" />
-                    </motion.div>
-                    <h2 className="text-4xl md:text-5xl font-bold">
-                        Certifications &amp; <span className="gradient-text">Achievements</span>
-                    </h2>
+            <div className="container mx-auto max-w-6xl relative z-10">
+                {/* Section label */}
+                <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    className="section-label mb-4"
+                >
+                    <span>06 — Certificates</span>
+                </motion.div>
+
+                <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
+                    className="mb-14"
+                >
+                    <div className="flex items-center gap-4 mb-4">
+                        <motion.div
+                            animate={{ rotate: [0, 10, -10, 0] }}
+                            transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                            className="text-3xl"
+                        >
+                            <FaMedal className="text-[#FFD700]" />
+                        </motion.div>
+                        <h2 className="text-4xl md:text-5xl font-bold">
+                            Certifications &amp; <span className="gradient-text">Achievements</span>
+                        </h2>
+                    </div>
+                    <p className="text-slate-500 max-w-lg">
+                        Continuous learning and skill validation across industry platforms, showcasing theoretical knowledge and practical application.
+                    </p>
+                </motion.div>
+
+                {/* Grid display */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {certs.map((cert, i) => (
+                        <div key={i} onClick={() => setSelectedCert(cert)} className="cursor-pointer">
+                            <TiltCertCard cert={cert} />
+                        </div>
+                    ))}
                 </div>
-                <p className="text-slate-500 max-w-lg">
-                    Continuous learning and skill validation across industry platforms, showcasing theoretical knowledge and practical application.
-                </p>
-            </motion.div>
-
-            {/* Grid display instead of Carousel */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {certs.map((cert, i) => (
-                    <TiltCertCard key={i} cert={cert} />
-                ))}
             </div>
-        </div>
-    </section>
-);
+
+            {/* Full-screen Certificate Viewer Modal */}
+            <AnimatePresence>
+                {selectedCert && (
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 backdrop-blur-md p-4 md:p-8"
+                        onClick={() => setSelectedCert(null)}
+                    >
+                        <motion.div
+                            initial={{ scale: 0.85, opacity: 0 }}
+                            animate={{ scale: 1, opacity: 1 }}
+                            exit={{ scale: 0.85, opacity: 0 }}
+                            transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                            className="relative max-w-4xl w-full"
+                            onClick={e => e.stopPropagation()}
+                        >
+                            {/* Close button */}
+                            <button
+                                onClick={() => setSelectedCert(null)}
+                                className="absolute -top-3 -right-3 z-10 w-10 h-10 flex items-center justify-center rounded-full bg-black/80 border border-white/20 text-white hover:text-[#FFD700] hover:border-[#FFD700]/50 transition-colors"
+                            >
+                                <FaTimes />
+                            </button>
+
+                            {/* Certificate image */}
+                            <div className="rounded-xl overflow-hidden border border-white/10 shadow-2xl">
+                                <img
+                                    src={`${import.meta.env.BASE_URL}${selectedCert.image.startsWith('/') ? selectedCert.image.slice(1) : selectedCert.image}`}
+                                    alt={selectedCert.title}
+                                    className={`w-full h-auto object-contain bg-white ${selectedCert.rotate ? '-rotate-90' : ''}`}
+                                />
+                            </div>
+
+                            {/* Certificate info bar */}
+                            <div className="mt-4 glass-card p-4 rounded-xl border border-white/10 flex items-center justify-between">
+                                <div>
+                                    <h3 className="text-lg font-bold text-white">{selectedCert.title}</h3>
+                                    <p className="text-sm font-mono" style={{ color: selectedCert.color }}>{selectedCert.org} · {selectedCert.date}</p>
+                                </div>
+                                <span className="text-xs font-mono px-3 py-1 rounded-full border" style={{ color: selectedCert.color, borderColor: selectedCert.color + '40', background: selectedCert.color + '12' }}>
+                                    {selectedCert.badge}
+                                </span>
+                            </div>
+                        </motion.div>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+        </section>
+    );
+};
 
 export default Certificates;

@@ -15,6 +15,7 @@ const featuredProjects = [
         color: '#FFD700',
         gradient: 'from-[#FFD700]/20 to-transparent',
         image: '/codeforge.png',
+        category: 'fullstack',
     },
     {
         num: '02',
@@ -28,23 +29,23 @@ const featuredProjects = [
         color: '#FFFACD',
         gradient: 'from-[#FFFACD]/20 to-transparent',
         image: '/skillsense.png',
-    },
-    {
-        num: '03',
-        title: 'Chrono24 Clone',
-        subtitle: 'UI Precision Project',
-        desc: 'A pixel-perfect luxury marketplace clone focused on UI precision, responsiveness, and clean design.',
-        tech: ['HTML', 'CSS'],
-        live: 'https://pri-chrono24-clone.netlify.app/',
-        github: 'https://github.com/PriyanshCG/sem1-assignments/tree/main/CSS/website%20clone/web1',
-        youtube: 'https://youtu.be/ss5Y4wo_m3k?si=FtSfdFjAaQwQwyoT',
-        color: '#FFD700',
-        gradient: 'from-[#FFD700]/20 to-transparent',
-        image: '/chrono24.png',
+        category: 'fullstack',
     },
 ];
 
 const moreProjects = [
+    {
+        title: 'Chrono24 Clone',
+        caption: 'Luxury marketplace clone with pixel-perfect precision.',
+        desc: 'A pixel-perfect luxury marketplace clone focused on UI precision, responsiveness, and clean design.',
+        tech: ['HTML', 'CSS'],
+        github: 'https://github.com/PriyanshCG/sem1-assignments/tree/main/CSS/website%20clone/web1',
+        live: 'https://pri-chrono24-clone.netlify.app/',
+        youtube: 'https://youtu.be/ss5Y4wo_m3k?si=FtSfdFjAaQwQwyoT',
+        color: '#FFD700',
+        image: '/chrono24.png',
+        category: 'clones',
+    },
     {
         title: 'Razer Clone',
         caption: 'Gaming accessories brand landing page with immersive dark mode.',
@@ -55,6 +56,7 @@ const moreProjects = [
         youtube: 'https://youtu.be/1ITU4w0NNoo?si=Wx12fVLMCqeAxDrD',
         color: '#FFD700',
         image: '/razer.png',
+        category: 'clones',
     },
     {
         title: 'Polygon Clone',
@@ -66,6 +68,7 @@ const moreProjects = [
         youtube: 'https://youtu.be/fTuqEF0bDGg?si=mbmFJsOZovGg7R26',
         color: '#FFFACD',
         image: '/polygon.png',
+        category: 'clones',
     },
     {
         title: 'Drop Clone',
@@ -77,7 +80,70 @@ const moreProjects = [
         youtube: 'https://youtu.be/XAni0st0kZM?si=TeJulnBnaqT2zGeg',
         color: '#FFD700',
         image: '/drop.png',
+        category: 'clones',
     },
+    {
+        title: 'Whack-a-Mole',
+        caption: 'Classic arcade game built with vanilla JavaScript.',
+        desc: 'Fun and interactive whack-a-mole game with score tracking and timer.',
+        tech: ['HTML', 'CSS', 'JS'],
+        github: 'https://github.com/PriyanshCG/VS_CODE/tree/main/coding-gita/js/games/whack-a-mole-game',
+        live: 'https://priyansh-whack-a-mole.netlify.app/',
+        color: '#FFD700',
+        image: '/whack-a-mole.png',
+        category: 'games',
+    },
+    {
+        title: 'Typing Speed',
+        caption: 'Test and improve your typing speed in real-time.',
+        desc: 'A typing speed test game that measures WPM and accuracy with live feedback.',
+        tech: ['HTML', 'CSS', 'JS'],
+        github: 'https://github.com/PriyanshCG/VS_CODE/tree/main/coding-gita/js/games/typing-speed',
+        live: 'https://priyansh-typing-speed.netlify.app/',
+        image: '/typing-speed.png',
+        color: '#FFFACD',
+        category: 'games',
+    },
+    {
+        title: 'Click Counter',
+        caption: 'How fast can you click? Challenge yourself!',
+        desc: 'A simple yet addictive click counter game to test your clicking speed.',
+        tech: ['HTML', 'CSS', 'JS'],
+        github: 'https://github.com/PriyanshCG/VS_CODE/tree/main/coding-gita/js/games/clickcounter',
+        live: 'https://priyansh-click-counter.netlify.app/',
+        color: '#FFD700',
+        image: '/click-counter.png',
+        category: 'games',
+    },
+    {
+        title: 'Color Picker',
+        caption: 'Guess the correct color from the RGB value.',
+        desc: 'An interactive color guessing game that sharpens your RGB color knowledge.',
+        tech: ['HTML', 'CSS', 'JS'],
+        github: 'https://github.com/PriyanshCG/VS_CODE/tree/main/coding-gita/js/games/colorpicker',
+        live: 'https://priyansh-color-picker.netlify.app/',
+        color: '#FFFACD',
+        image: '/color-picker.png',
+        category: 'games',
+    },
+    {
+        title: 'Memory Flip Card',
+        caption: 'Match the pairs in this classic memory card game.',
+        desc: 'A memory card flip game with smooth animations and win detection.',
+        tech: ['HTML', 'CSS', 'JS'],
+        github: 'https://github.com/PriyanshCG/VS_CODE/tree/main/coding-gita/js/games/Memory%20Flip%20Card',
+        live: 'https://priyansh-memory-flip-card.netlify.app/',
+        color: '#FFD700',
+        image: '/memory-flip.png',
+        category: 'games',
+    },
+];
+
+const categories = [
+    { key: 'all', label: 'All' },
+    { key: 'fullstack', label: 'Full Stack' },
+    { key: 'clones', label: 'Clones' },
+    { key: 'games', label: 'Games' },
 ];
 
 const TiltCard = ({ project }) => {
@@ -276,6 +342,15 @@ const SmallCard = ({ project, index }) => (
 
 const Projects = () => {
     const [showMore, setShowMore] = useState(false);
+    const [activeCategory, setActiveCategory] = useState('all');
+
+    const filteredFeatured = activeCategory === 'all'
+        ? featuredProjects
+        : featuredProjects.filter(p => p.category === activeCategory);
+
+    const filteredMore = activeCategory === 'all'
+        ? moreProjects
+        : moreProjects.filter(p => p.category === activeCategory);
 
     return (
         <section className="relative py-32 px-6 overflow-hidden">
@@ -293,7 +368,7 @@ const Projects = () => {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="mb-16"
+                    className="mb-8"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold mb-4">
                         Featured <span className="gradient-text">Projects</span>
@@ -303,34 +378,62 @@ const Projects = () => {
                     </p>
                 </motion.div>
 
-                {/* Featured 3D tilt cards */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-                    {featuredProjects.map(p => <TiltCard key={p.num} project={p} />)}
+                {/* Category Filter Tabs */}
+                <div className="flex flex-wrap gap-2 mb-12">
+                    {categories.map(cat => (
+                        <motion.button
+                            key={cat.key}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            onClick={() => { setActiveCategory(cat.key); setShowMore(false); }}
+                            className={`px-5 py-2 rounded-full font-mono text-xs tracking-wider uppercase transition-all duration-300 border ${activeCategory === cat.key
+                                ? 'bg-[#FFD700]/15 border-[#FFD700]/50 text-[#FFD700] shadow-[0_0_15px_rgba(255,215,0,0.15)]'
+                                : 'border-white/10 text-slate-500 hover:border-white/20 hover:text-slate-300'
+                                }`}
+                        >
+                            {cat.label}
+                        </motion.button>
+                    ))}
                 </div>
 
+                {/* Featured 3D tilt cards */}
+                {filteredFeatured.length > 0 && (
+                    <div className="grid md:grid-cols-2 gap-6 mb-16">
+                        {filteredFeatured.map(p => <TiltCard key={p.num} project={p} />)}
+                    </div>
+                )}
+
                 {/* More projects */}
-                {showMore && (
+                {(showMore || activeCategory !== 'all') && filteredMore.length > 0 && (
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5 }}
                         className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-10"
                     >
-                        {moreProjects.map((p, i) => <SmallCard key={p.title} project={p} index={i} />)}
+                        {filteredMore.map((p, i) => <SmallCard key={p.title} project={p} index={i} />)}
                     </motion.div>
                 )}
 
-                {/* View more toggle */}
-                <div className="text-center mb-10">
-                    <motion.button
-                        whileHover={{ scale: 1.04 }}
-                        whileTap={{ scale: 0.97 }}
-                        onClick={() => setShowMore(s => !s)}
-                        className="btn-neon-blue px-8 py-3.5 rounded font-mono text-sm font-semibold"
-                    >
-                        {showMore ? '[ View Less Projects ]' : '[ View More Projects ]'}
-                    </motion.button>
-                </div>
+                {/* View more toggle — only show in 'all' category */}
+                {activeCategory === 'all' && (
+                    <div className="text-center mb-10">
+                        <motion.button
+                            whileHover={{ scale: 1.04 }}
+                            whileTap={{ scale: 0.97 }}
+                            onClick={() => setShowMore(s => !s)}
+                            className="btn-neon-blue px-8 py-3.5 rounded font-mono text-sm font-semibold"
+                        >
+                            {showMore ? '[ View Less Projects ]' : '[ View More Projects ]'}
+                        </motion.button>
+                    </div>
+                )}
+
+                {filteredFeatured.length === 0 && filteredMore.length === 0 && (
+                    <div className="text-center py-16 text-slate-500 font-mono text-sm">
+                        No projects in this category yet.
+                    </div>
+                )}
             </div>
         </section>
     );

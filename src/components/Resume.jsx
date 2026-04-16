@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { FaFileAlt, FaTimes, FaEye } from 'react-icons/fa';
+import { FaFileAlt, FaTimes, FaEye, FaDownload } from 'react-icons/fa';
 import { useState } from 'react';
 
 const RESUME_URL = '/priyansh-resume.pdf';
@@ -48,6 +48,15 @@ const Resume = () => {
                     >
                         <FaEye /> View Resume
                     </motion.button>
+                    <motion.a
+                        whileHover={{ scale: 1.04 }}
+                        whileTap={{ scale: 0.97 }}
+                        href={RESUME_URL}
+                        download="Priyansh_Patel_Resume.pdf"
+                        className="px-8 py-4 rounded font-mono text-sm font-semibold flex items-center gap-3 border border-[#FFD700]/30 text-[#FFD700] hover:bg-[#FFD700]/10 transition-colors"
+                    >
+                        <FaDownload /> Download Resume
+                    </motion.a>
                 </motion.div>
             </div>
 
