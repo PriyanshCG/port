@@ -10,6 +10,7 @@ import Certificates from './components/Certificates';
 import Hackathon from './components/Hackathon';
 import Education from './components/Education';
 import Contact from './components/Contact';
+import Resume from './components/Resume';
 import ParticleField from './components/ParticleField';
 import CustomCursor from './components/CustomCursor';
 import LoadingScreen from './components/LoadingScreen';
@@ -79,6 +80,10 @@ function App() {
 
               <section id="education">
                 <Education />
+              </section>
+
+              <section id="resume">
+                <Resume />
               </section>
 
               <section id="contact">

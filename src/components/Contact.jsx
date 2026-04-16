@@ -2,24 +2,53 @@ import { motion } from 'framer-motion';
 import { FaGithub, FaLinkedin, FaEnvelope, FaPaperPlane, FaYoutube } from 'react-icons/fa';
 import { FaXTwitter } from 'react-icons/fa6';
 import { SiLeetcode, SiSololearn } from 'react-icons/si';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
+import emailjs from '@emailjs/browser';
+
+// ─── EmailJS Credentials ───────────────────────────────────────
+// Replace these with your actual EmailJS credentials:
+const EMAILJS_SERVICE_ID = 'service_6tk81ec';   // e.g. 'service_abc123'
+const EMAILJS_TEMPLATE_ID = 'template_11mphcm'; // e.g. 'template_xyz789'
+const EMAILJS_PUBLIC_KEY = 'IKbqUEe-vu3L7DpC_';    // e.g. 'aBcDeFgHiJkLmN'
+// ────────────────────────────────────────────────────────────────
 
 const Contact = () => {
+    const formRef = useRef(null);
     const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' });
     const [sent, setSent] = useState(false);
     const [sending, setSending] = useState(false);
+    const [error, setError] = useState('');
 
     const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
     const handleSubmit = (e) => {
         e.preventDefault();
         setSending(true);
-        setTimeout(() => {
-            setSending(false);
-            setSent(true);
-            setForm({ name: '', email: '', subject: '', message: '' });
-            setTimeout(() => setSent(false), 5000);
-        }, 1800);
+        setError('');
+
+        emailjs.send(
+            EMAILJS_SERVICE_ID,
+            EMAILJS_TEMPLATE_ID,
+            {
+                name: form.name,
+                email: form.email,
+                subject: form.subject,
+                message: form.message,
+            },
+            EMAILJS_PUBLIC_KEY,
+        )
+            .then(() => {
+                setSending(false);
+                setSent(true);
+                setForm({ name: '', email: '', subject: '', message: '' });
+                setTimeout(() => setSent(false), 5000);
+            })
+            .catch((err) => {
+                setSending(false);
+                setError('Failed to send message. Please try again.');
+                console.error('EmailJS Error:', err);
+                setTimeout(() => setError(''), 5000);
+            });
     };
 
     return (
@@ -126,7 +155,7 @@ const Contact = () => {
                                 <span className="text-xs font-mono text-slate-500 ml-2">new_message.exe</span>
                             </div>
 
-                            <form onSubmit={handleSubmit} className="p-6 space-y-4">
+                            <form ref={formRef} onSubmit={handleSubmit} className="p-6 space-y-4">
                                 <div className="grid sm:grid-cols-2 gap-4">
                                     <div>
                                         <label className="text-xs font-mono text-slate-500 mb-1.5 block">
@@ -217,6 +246,16 @@ const Contact = () => {
                                         </>
                                     )}
                                 </motion.button>
+
+                                {error && (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="text-center text-sm font-mono text-red-400 bg-red-400/10 border border-red-400/20 rounded px-4 py-2"
+                                    >
+                                        ⚠️ {error}
+                                    </motion.div>
+                                )}
                             </form>
                         </div>
                     </motion.div>
