@@ -74,7 +74,7 @@ const COMMANDS = {
             { type: 'text', text: '' },
             { type: 'contact', label: 'Email   ', value: 'priyansh30407@gmail.com' },
             { type: 'contact', label: 'GitHub  ', value: 'github.com/PriyanshCG' },
-            { type: 'contact', label: 'LinkedIn', value: 'linkedin.com/in/priyansh-patel-75264839a' },
+            { type: 'contact', label: 'LinkedIn', value: 'linkedin.com/in/priyansh-patel-291377410' },
             { type: 'contact', label: 'Twitter ', value: 'x.com/Priyanshhh_300' },
             { type: 'text', text: '' },
             { type: 'info', text: "✉️  Let's build something amazing together 🚀" },

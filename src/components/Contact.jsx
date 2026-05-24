@@ -113,7 +113,7 @@ const Contact = () => {
                             <div className="space-y-3">
                                 {[
                                     { icon: <FaGithub />, label: 'GitHub', handle: 'PriyanshCG', href: 'https://github.com/PriyanshCG', color: '#ffffff' },
-                                    { icon: <FaLinkedin />, label: 'LinkedIn', handle: 'priyansh-patel-75264839a', href: 'https://www.linkedin.com/in/priyansh-patel-75264839a/', color: '#0077b5' },
+                                    { icon: <FaLinkedin />, label: 'LinkedIn', handle: 'priyansh-patel-291377410', href: 'https://www.linkedin.com/in/priyansh-patel-291377410/', color: '#0077b5' },
                                     { icon: <FaXTwitter />, label: 'X', handle: 'Priyanshhh_300', href: 'https://x.com/Priyanshhh_300', color: '#ffffff' },
                                     { icon: <FaYoutube />, label: 'YouTube', handle: 'PriyanshPatel-d7i', href: 'https://www.youtube.com/@PriyanshPatel-d7i', color: '#ff0000' },
                                     { icon: <SiSololearn />, label: 'Sololearn', handle: '35528286', href: 'https://www.sololearn.com/en/profile/35528286', color: '#27B885' },

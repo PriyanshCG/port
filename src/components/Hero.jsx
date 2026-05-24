@@ -162,7 +162,7 @@ const Hero = () => {
                     >
                         {[
                             { icon: <FaGithub />, href: 'https://github.com/PriyanshCG', label: 'GitHub' },
-                            { icon: <FaLinkedin />, href: 'https://www.linkedin.com/in/priyansh-patel-75264839a/', label: 'LinkedIn' },
+                            { icon: <FaLinkedin />, href: 'https://www.linkedin.com/in/priyansh-patel-291377410/', label: 'LinkedIn' },
                             { icon: <FaXTwitter />, href: 'https://x.com/Priyanshhh_300', label: 'Twitter' },
                             { icon: <FaYoutube />, href: 'https://www.youtube.com/@PriyanshPatel-d7i', label: 'YouTube' },
                             { icon: <SiSololearn />, href: 'https://www.sololearn.com/en/profile/35528286', label: 'Sololearn' },
