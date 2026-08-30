@@ -99,7 +99,7 @@ const About = () => {
                         <div className="grid grid-cols-2 gap-4">
                             <Counter to={10} label="Tech Stack" suffix="+" />
                             <Counter to={6} label="Projects Built" suffix="+" />
-                            <Counter to={2} label="Hackathons" suffix="x" />
+                            <Counter to={6} label="Hackathons" suffix="+" />
                             <Counter to={100} label="Learner Mindset" suffix="%" />
                         </div>
 
