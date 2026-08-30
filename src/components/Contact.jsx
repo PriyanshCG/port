@@ -26,21 +26,19 @@ const Contact = () => {
         setSending(true);
         setError('');
 
-        emailjs.send(
+        emailjs.sendForm(
             EMAILJS_SERVICE_ID,
             EMAILJS_TEMPLATE_ID,
+            formRef.current,
             {
-                name: form.name,
-                email: form.email,
-                subject: form.subject,
-                message: form.message,
-            },
-            EMAILJS_PUBLIC_KEY,
+                publicKey: EMAILJS_PUBLIC_KEY,
+            }
         )
             .then(() => {
                 setSending(false);
                 setSent(true);
                 setForm({ name: '', email: '', subject: '', message: '' });
+                formRef.current.reset();
                 setTimeout(() => setSent(false), 5000);
             })
             .catch((err) => {
